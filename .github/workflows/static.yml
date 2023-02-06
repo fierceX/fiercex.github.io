@@ -41,6 +41,7 @@ jobs:
       - name: build
         run:
           tiddlywiki ./ --build index
+          ls ./output/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
