@@ -41,14 +41,11 @@ jobs:
       - name: build
         run:
           tiddlywiki ./ --build index
-      - name: ls
-        run:
-          ls ./output/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: ./output/index.html
+          path: ./output/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
