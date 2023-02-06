@@ -1,0 +1,40 @@
+{
+    "xxs": [
+        {
+            "w": 1,
+            "h": 1,
+            "x": 0,
+            "y": 0,
+            "i": "$:/core/ui/SideBar/Open",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 1,
+            "h": 1,
+            "x": 0,
+            "y": 1,
+            "i": "$:/core/ui/SideBar/Recent",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 1,
+            "h": 1,
+            "x": 0,
+            "y": 2,
+            "i": "$:/core/ui/SideBar/Tools",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 1,
+            "h": 2,
+            "x": 0,
+            "y": 3,
+            "i": "$:/core/ui/SideBar/More",
+            "moved": false,
+            "static": false
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+created: 20230203081131348
+creator: fiercex
+modified: 20230203081401524
+modifier: fiercex
+tags: 技术 FreeBSD
+title: FreeBSD Jail DHCP配置
+type: text/vnd.tiddlywiki
+
+首先Jail要开启`vnet`，使其拥有完整的网络栈  
+然后在Jail的`rc.conf`配置文件里，增加一下配置项
+
+```conf
+ipv6_activate_all_interfaces="YES"
+rtsold_enable="YES"
+ifconfig_eth0_ipv6="inet6 auto_linklocal accept_rtadv autoconf"
+ifconfig_eth0="SYNCDHCP"
+```
+
+重启Jail即可自动获取v4和v6的ip地址

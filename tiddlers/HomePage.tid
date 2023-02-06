@@ -1,0 +1,33 @@
+created: 20230126030219790
+creator: fiercex
+icon: 🐶
+modified: 20230206025044829
+modifier: fiercex
+page-cover: https://bing.img.run/uhd.php
+title: HomePage
+type: text/vnd.tiddlywiki
+
+
+[[认知]]
+
+><$setvars _r="[tag[认知]random[3]]" random="\{{{\ [r] \}}}\">
+
+<<random>>
+</$setvars>
+
+[[技术]] 
+
+><$setvars _r="[tag[技术]random[3]]" random="\{{{\ [r] \}}}\">
+
+<<random>>
+</$setvars>
+
+[[管理]]
+
+><$setvars _r="[tag[管理]random[3]]" random="\{{{\ [r] \}}}\">
+
+<<random>>
+</$setvars>
+
+
+

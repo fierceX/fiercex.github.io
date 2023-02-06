@@ -1,0 +1,11 @@
+Modern.TiddlyDev#SHA256-Hashed: c09ede631ac8be288b45c3affcfa42d24ede90f10b64983623c63b8e3e5ff1e2
+author: Gk0Wk
+dependents: 
+description: Logseq-like TiddlyWiki theme plugin.
+list: readme LICENSE
+name: TiddlySeq
+plugin-type: plugin
+source: https://github.com/Gk0Wk/TiddlySeq/tree/master/plugins/Gk0Wk/TiddlySeq
+title: $:/plugins/Gk0Wk/TiddlySeq
+type: application/json
+version: 0.0.4+1

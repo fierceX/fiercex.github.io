@@ -1,0 +1,21 @@
+created: 20230128124913246
+creator: fiercex
+modified: 20230128125340971
+modifier: fiercex
+tags: 技术 信息论
+title: 信息熵
+type: text/vnd.tiddlywiki
+
+
+
+* 熵是不确定性或者混乱程度的度量
+* 信息熵是所有可能发生的事件的[[信息量]]的期望
+
+$$H(S) = - \sum_{i=1}^{n}p(x_i)\log_2{p(x_i)}$$
+
+其中$$p(x_i)$$代表随机事件$$X$$为$$x_i$$时的概率
+
+* 其也表示：
+** 信源S的平均信息量
+** 编码所有符号S平均所需要的位数
+* [[信息熵与信息量]]

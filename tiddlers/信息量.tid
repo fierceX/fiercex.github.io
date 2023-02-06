@@ -1,0 +1,19 @@
+created: 20230128130947635
+creator: fiercex
+modified: 20230128145102490
+modifier: fiercex
+tags: 技术 信息论
+title: 信息量
+type: text/vnd.tiddlywiki
+
+
+
+* 用来度量一个[[信息]]所带来的消除不确定性
+
+$$
+L=-\log_2p(x_i)
+$$ 
+
+** 其中$$p(x_i)$$代表随机事件$$X$$为$$x_i$$时的概率
+
+* 事件发生概率越低，信息量越大

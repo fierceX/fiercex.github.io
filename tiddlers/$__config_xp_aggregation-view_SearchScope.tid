@@ -1,0 +1,8 @@
+created: 20230128134807645
+creator: fiercex
+modified: 20230128134807645
+modifier: fiercex
+title: $:/config/xp/aggregation-view/SearchScope
+type: text/vnd.tiddlywiki
+
++[search:-text,*<userInput>]
