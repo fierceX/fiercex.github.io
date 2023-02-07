@@ -1,11 +1,9 @@
 created: 20230207092905449
 creator: fiercex
-draft.of: 新条目
-draft.title: Linux 前台任务转后台
-modified: 20230207092956740
+modified: 20230207093010393
 modifier: fiercex
 tags: 技术
-title: Draft of '新条目' by fiercex
+title: Linux 前台任务转后台
 type: text/vnd.tiddlywiki
 
 # `^z`(ctrl+z) 将当前任务转到后台挂起，此时任务被暂停
