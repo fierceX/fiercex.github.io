@@ -1,0 +1,14 @@
+created: 20230207092905449
+creator: fiercex
+draft.of: 新条目
+draft.title: Linux 前台任务转后台
+modified: 20230207092956740
+modifier: fiercex
+tags: 技术
+title: Draft of '新条目' by fiercex
+type: text/vnd.tiddlywiki
+
+# `^z`(ctrl+z) 将当前任务转到后台挂起，此时任务被暂停
+# `jobs -l` 查看后台任务
+# `bg %id` 将编号为id的后台任务继续运行
+# `disown -h %id` 将编号为id的后台任务不受终端断开影响
