@@ -1,13 +1,3 @@
-created: 20230207092053285
-creator: fiercex
-draft.of: 新条目
-draft.title: 新条目
-modified: 20230207092054977
-modifier: fiercex
-tags: 
-title: Draft of '新条目' by fiercex
-type: text/vnd.tiddlywiki
-
 - 矛盾论
   
   事物的矛盾法则，即对立统一的法则，是唯物辩证法的最根本的法则。
