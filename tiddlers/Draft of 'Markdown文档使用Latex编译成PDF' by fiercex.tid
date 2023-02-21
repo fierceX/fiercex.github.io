@@ -2,7 +2,7 @@ created: 20230203081458752
 creator: fiercex
 draft.of: Markdown文档使用Latex编译成PDF
 draft.title: Markdown文档使用Latex编译成PDF
-modified: 20230221011529623
+modified: 20230221011658954
 modifier: fiercex
 tags: 技术 Markdown Latex
 title: Draft of 'Markdown文档使用Latex编译成PDF' by fiercex
@@ -75,7 +75,29 @@ pandoc Markdown文档使用Latex编译成PDF.md -o Markdown文档使用Latex编�
 \usepackage{colortbl}
 \definecolor{tableheadcolor}{RGB}{225,225,225}
 
+%% 代码高亮区域自动换行
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
+%% 自定义引用环境
+\usepackage{framed}
+\usepackage{quoting}
+
+\definecolor{bgcolor}{HTML}{DADADA}
+\colorlet{shadecolor}{bgcolor}
+% define a new environment shadedquotation. You can change leftmargin and
+% rightmargin as you wish.
+\newenvironment{shadedquotation}
+ {\begin{shaded*}
+  \quoting[leftmargin=1em, rightmargin=0pt, vskip=0pt, font=itshape]
+ }
+ {\endquoting
+ \end{shaded*}
+ }
+
+%
+\def\quote{\shadedquotation}
+\def\endquote{\endshadedquotation}
 
 ```
 然后在导出是增加选择`-H H.tex`即可
@@ -85,3 +107,5 @@ pandoc Markdown文档使用Latex编译成PDF.md -o Markdown文档使用Latex编�
 ```bash
 pandoc Markdown文档使用Latex编译成PDF.md -o Markdown文档使用Latex编译成PDF.pdf -H H.tex --highlight-style haddock --pdf-engine xelatex
 ```
+
+目前已知wen t
