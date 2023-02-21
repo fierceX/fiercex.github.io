@@ -1,0 +1,87 @@
+created: 20230203081458752
+creator: fiercex
+draft.of: Markdown文档使用Latex编译成PDF
+draft.title: Markdown文档使用Latex编译成PDF
+modified: 20230221011529623
+modifier: fiercex
+tags: 技术 Markdown Latex
+title: Draft of 'Markdown文档使用Latex编译成PDF' by fiercex
+type: text/vnd.tiddlywiki
+
+Pandoc可以直接使用Latex将Markdown文件编译成PDF。
+
+首先在MD文件的开头，添加元信息
+
+```yaml
+---
+documentclass: ctexart
+title: Markdown文档使用Latex编译成PDF
+---
+```
+
+然后就可以用Pandoc导出成PDF了
+
+```bash
+pandoc Markdown文档使用Latex编译成PDF.md -o Markdown文档使用Latex编译成PDF.pdf --pdf-engine xelatex
+```
+
+而且也支持在MD文档中直接写latex代码，例如我需要加个文档的修订记录表格，然后加上目录，那么在MD文档的元数据区域下面增加以下内容
+
+```latex
+\vspace{20em}
+
+|版本号|修订人|修订日期|修订描述|
+|-|-|-|-|
+|V1.0|fiercex|2022/12/29|首次编辑|
+|V1.1|fiercex|2023/01/04|修改格式|
+
+\newpage
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\newpage
+```
+
+增加代码高亮支持，那么在导出的时候加上`--highlight-style haddock`即可，有不同的高亮样式可供选择
+
+更复杂的修改，可以增加一个单独的样式文件
+
+```latex
+%% 设置页边距
+\usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+%% 针对中文自动换行
+\XeTeXlinebreaklocale "zh"
+
+%% 设置行间距 1.5 倍
+\linespread{1.5}\selectfont
+
+%% 设置首行缩进
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+
+%% 段落之间的距离
+\setlength{\parskip}{2pt}   
+
+%% 字与字之间加入0pt至1pt的间距，确保左右对齐
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+%% 设置页眉页脚
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0.4pt}  %% 页眉分割线宽
+\renewcommand{\footrulewidth}{0.4pt}  %% 页脚分割线宽
+
+%% 设置表头背景色
+\usepackage{colortbl}
+\definecolor{tableheadcolor}{RGB}{225,225,225}
+
+
+
+```
+然后在导出是增加选择`-H H.tex`即可
+
+完整的导出命令如下
+
+```bash
+pandoc Markdown文档使用Latex编译成PDF.md -o Markdown文档使用Latex编译成PDF.pdf -H H.tex --highlight-style haddock --pdf-engine xelatex
+```
