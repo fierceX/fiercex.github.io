@@ -248,15 +248,17 @@ photoprism --assets-path=/var/db/photoprism/assets --storage-path=/var/db/photop
 #### Memos
 同样官方只给了docker和linux版本，但是基于go的，可以很快的编译安装：
 1. 编译前端
-```bash
-cd web/
-yarn && yarn build
-```
+  ```bash
+  cd web/
+  yarn && yarn build
+  ```
+
 2. 编译后端
-```
-cp -r web/frontend-build/dist /server/dist
-go build -o memos ./bin/server/main.go
-```
+  ```
+  cp -r web/frontend-build/dist /server/dist
+  go build -o memos ./bin/server/main.go
+  ```
+
 然后就可以启动了
 #### TiddlyWiki
 这个很简单，用基于Node.js版本的，可以直接用npm安装
