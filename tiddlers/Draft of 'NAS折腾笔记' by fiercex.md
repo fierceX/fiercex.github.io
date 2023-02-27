@@ -248,16 +248,16 @@ photoprism --assets-path=/var/db/photoprism/assets --storage-path=/var/db/photop
 #### Memos
 同样官方只给了docker和linux版本，但是基于go的，可以很快的编译安装：
 1. 编译前端
-  ```bash
-  cd web/
-  yarn && yarn build
-  ```
+   ```bash
+   cd web/
+   yarn && yarn build
+   ```
 
 2. 编译后端
-  ```
-  cp -r web/frontend-build/dist /server/dist
-  go build -o memos ./bin/server/main.go
-  ```
+   ```
+   cp -r web/frontend-build/dist /server/dist
+   go build -o memos ./bin/server/main.go
+   ```
 
 然后就可以启动了
 #### TiddlyWiki
@@ -328,8 +328,8 @@ nginx在同一个端口号监听多个域名，所以加域名前缀然后申请
 内网搭建nginx服务和外网其实一样的，但是注意一点，如果要内外网用同一个域名访问，那需要内网的nginx的ssl证书和外网一样对该域名认证，因为内网没有公网，而且也不开放80端口，所以没办法用内网机器进行验证。解决办法就是直接拷贝外网机器的ssl证书就行了。
 #### DNS劫持
 1. DNS映射
-安装`DNSMASQ`，这个在插件里就能找到，一键安装。  
-在`/usr/local/etc/dnsmasq.conf`文件下，添加下面一组DNS映射，就可以将该域名映射到后面的ip地址，这里全部将域名映射到`nginx`服务所在的ip地址
+   安装`DNSMASQ`，这个在插件里就能找到，一键安装。  
+   在`/usr/local/etc/dnsmasq.conf`文件下，添加下面一组DNS映射，就可以将该域名映射到后面的ip地址，这里全部将域名映射到`nginx`服务所在的ip地址
 ```
 address=/test.test.com/192.168.0.2
 address=/test2.test.com/192.168.0.2
