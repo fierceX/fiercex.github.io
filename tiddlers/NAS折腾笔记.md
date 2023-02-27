@@ -248,15 +248,17 @@ photoprism --assets-path=/var/db/photoprism/assets --storage-path=/var/db/photop
 #### Memos
 同样官方只给了docker和linux版本，但是基于go的，可以很快的编译安装：
 1. 编译前端
-```bash
-cd web/
-yarn && yarn build
-```
+   ```bash
+   cd web/
+   yarn && yarn build
+   ```
+
 2. 编译后端
-```
-cp -r web/frontend-build/dist /server/dist
-go build -o memos ./bin/server/main.go
-```
+   ```
+   cp -r web/frontend-build/dist /server/dist
+   go build -o memos ./bin/server/main.go
+   ```
+
 然后就可以启动了
 #### TiddlyWiki
 这个很简单，用基于Node.js版本的，可以直接用npm安装
@@ -286,38 +288,38 @@ cargo build --features sqlite --release
 首先在vps上也安装tailacale客户端，加入虚拟网络，然后就可以通过vps访问家里的nas上的服务，特别针对TrueNAS系统，在TrueNAS上新建的Jail可以使用VNET，也就是拥有完整的网络，能够连接到路由器分配到该Jail独立的IP地址，那这样的话，就需要在nas系统上开启路由转发，否则无法通过`tailscale`访问到独立ip上的web服务。
 ### 外网访问
 1. 为了安全起见，建议使用SSL，有免费的SSL证书，可以通过`.acme.sh`自动申请证书，记得打开80端口用于验证：
-```bash
-/root/.acme.sh/acme.sh --issue -d test.test.com --debug --standalone --keylength ec-256 --server letsencrypt
-```
+   ```bash
+   /root/.acme.sh/acme.sh --issue -d test.test.com --debug --standalone --keylength ec-256 --server letsencrypt
+   ```
 2. 安装并配置nginx，最简单的一个例子如下：
-```conf
-server {
-        #SSL 访问端口号为 443
-        listen 443 ssl;
-        #填写绑定证书的域名
-        server_name test.test.com;
-        #证书文件名称
-        ssl_certificate /root/.acme.sh/test.test.com_ecc/fullchain.cer;
-        #私钥文件名称
-        ssl_certificate_key /root/.acme.sh/test.test.com_ecc/test.test.com.key;
-        ssl_session_timeout 5m;
-        #请按照以下协议配置
-        ssl_protocols TLSv1.2 TLSv1.3;
-        #请按照以下套件配置，配置加密套件，写法遵循 openssl 标准。
-        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
-        ssl_prefer_server_ciphers on;
-        location / {
-           #网站主页路径。此路径仅供参考，具体请您按照实际目录操作。
-            proxy_pass http://192.168.0.3:8080/;
-            proxy_set_header  X-Real-IP  $remote_addr;
-            proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade";
-            proxy_set_header Host $http_host;
-        }
-    }
-```
+   ```conf
+   server {
+           #SSL 访问端口号为 443
+           listen 443 ssl;
+           #填写绑定证书的域名
+           server_name test.test.com;
+           #证书文件名称
+           ssl_certificate /root/.acme.sh/test.test.com_ecc/fullchain.cer;
+           #私钥文件名称
+           ssl_certificate_key /root/.acme.sh/test.test.com_ecc/test.test.com.key;
+           ssl_session_timeout 5m;
+           #请按照以下协议配置
+           ssl_protocols TLSv1.2 TLSv1.3;
+           #请按照以下套件配置，配置加密套件，写法遵循 openssl 标准。
+           ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+           ssl_prefer_server_ciphers on;
+           location / {
+              #网站主页路径。此路径仅供参考，具体请您按照实际目录操作。
+               proxy_pass http://192.168.0.3:8080/;
+               proxy_set_header  X-Real-IP  $remote_addr;
+               proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+               proxy_http_version 1.1;
+               proxy_set_header Upgrade $http_upgrade;
+               proxy_set_header Connection "upgrade";
+               proxy_set_header Host $http_host;
+           }
+       }
+   ```
 其中`location`下的`proxy_pass`字段即为nas系统上的web服务，由于用了`tailscale`，这里可以直接使用内网ip访问。  
 nginx在同一个端口号监听多个域名，所以加域名前缀然后申请证书，可以把想要的服务全部暴露出来，记得暴露出来服务要带帐号密码验证，否则有风险。
 ### 内网访问
@@ -325,14 +327,14 @@ nginx在同一个端口号监听多个域名，所以加域名前缀然后申请
 #### 内网搭建NGINX服务
 内网搭建nginx服务和外网其实一样的，但是注意一点，如果要内外网用同一个域名访问，那需要内网的nginx的ssl证书和外网一样对该域名认证，因为内网没有公网，而且也不开放80端口，所以没办法用内网机器进行验证。解决办法就是直接拷贝外网机器的ssl证书就行了。
 #### DNS劫持
-1. DNS映射
-安装`DNSMASQ`，这个在插件里就能找到，一键安装。  
-在`/usr/local/etc/dnsmasq.conf`文件下，添加下面一组DNS映射，就可以将该域名映射到后面的ip地址，这里全部将域名映射到`nginx`服务所在的ip地址
-```
-address=/test.test.com/192.168.0.2
-address=/test2.test.com/192.168.0.2
-```
-2. 修改默认DNS地址
-这一步有两个办法
+1. DNS映射  
+   安装`DNSMASQ`，这个在插件里就能找到，一键安装。  
+   在`/usr/local/etc/dnsmasq.conf`文件下，添加下面一组DNS映射，就可以将该域名映射到后面的ip地址，这里全部将域名映射到`nginx`服务所在的ip地址
+   ```
+   address=/test.test.com/192.168.0.2
+   address=/test2.test.com/192.168.0.2
+   ```
+2. 修改默认DNS地址  
+   这一步有两个办法
    -  修改路由器上的DNS地址，将路由器上的DNS地址指向`DNSMASQ`服务的ip地址，这样的好处是接入路由器的设备不需要修改任何东西，就能自动将该域名指向内网ip。缺点是需要路由器支持，遗憾的是我的路由器不支持
    -  修改需要的设备的DNS地址，将DNS地址指向`DNSMASQ`服务的ip地址，这样的好处是只在修改的设备上起作用，缺点是如果设备多，需要挨个修改
