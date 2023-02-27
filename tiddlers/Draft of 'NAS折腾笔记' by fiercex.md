@@ -288,9 +288,9 @@ cargo build --features sqlite --release
 首先在vps上也安装tailacale客户端，加入虚拟网络，然后就可以通过vps访问家里的nas上的服务，特别针对TrueNAS系统，在TrueNAS上新建的Jail可以使用VNET，也就是拥有完整的网络，能够连接到路由器分配到该Jail独立的IP地址，那这样的话，就需要在nas系统上开启路由转发，否则无法通过`tailscale`访问到独立ip上的web服务。
 ### 外网访问
 1. 为了安全起见，建议使用SSL，有免费的SSL证书，可以通过`.acme.sh`自动申请证书，记得打开80端口用于验证：
-```bash
-/root/.acme.sh/acme.sh --issue -d test.test.com --debug --standalone --keylength ec-256 --server letsencrypt
-```
+   ```bash
+   /root/.acme.sh/acme.sh --issue -d test.test.com --debug --standalone --keylength ec-256 --server letsencrypt
+   ```
 2. 安装并配置nginx，最简单的一个例子如下：
 ```conf
 server {
